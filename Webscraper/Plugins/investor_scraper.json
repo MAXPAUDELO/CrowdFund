@@ -1,0 +1,123 @@
+{
+	"list_page": "https://angel.co/people/investors",
+	
+	"loader": "//div[contains(@class, 'u-colorGrayC') and contains(@class, 'more_field') and contains(@class, 'u-textAlignCenter')]",
+
+	"project_start": "<div class=\"photo\">",
+	"project_prepend" : "",
+
+	"user" : "CrowdFundUser",
+	"pass" : "12345678",
+	"address" : "crowdfund.c0xjytogn3na.us-east-1.rds.amazonaws.com",
+	"port" : "3306",
+	"db" : "CrowdFund",	
+
+	"type": "Investor",
+	"list_type": "mega",
+	
+	"details": [
+        {
+            "type": "single_line",
+            "name": "name",
+            "start": "<span itemprop='name'>.*",
+            "link": "false",
+	    "regex": ">.+?<",
+	    "index": 0,
+	    "cut_start": 1,
+	    "cut_end": -1
+        },
+        {
+            "type": "single_line",
+            "name": "location",
+            "start": "<span class='tag' .* itemprop='locality'>.*",
+            "link": "false",
+	    "regex": ">.*?<",
+	    "index": 1,
+	    "cut_start": 1,
+	    "cut_end": -1
+        },
+        {
+            "type": "single_block",
+            "name": "profession",
+            "start": "<div class='experience_container'>",
+            "end": "<div class='two_col_block'>",
+	    "regex": ".*",
+	    "index": 0,
+            "keys": "^(?!With)^(?!<).*",
+	    "cut_start": 0,
+	    "cut_end": -0
+        },
+        {
+            "type": "single_line",
+            "name": "investments",
+            "start": "<span class='g-tag square larger highlight tooltip' title='.*",
+            "link": "false",
+			"regex": ">.+?<",
+			"index": 0,
+	    "cut_start": 1,
+	    "cut_end": -1
+        },
+        {
+            "type": "single_line",
+            "name": "average_invested",
+            "start": "<div class='content typical_investment_amount'>.*",
+            "link": "false",
+			"regex": ">.+?<",
+			"index": 0,
+	    "cut_start": 1,
+	    "cut_end": -1
+        },
+        {
+            "type": "single_line",
+            "name": "target_market",
+            "start": "<span class='tag' .*>.*",
+            "link": "false",
+			"regex": ">.*?<",
+			"index": 1,
+	    "cut_start": 1,
+	    "cut_end": -1
+        },
+        {
+            "type": "single_block",
+            "name": "target_location",
+            "start": "<div class='value' data-field='tags_interested_locations'>",
+            "end": "</div>",
+			"regex": ">.*?<",
+			"index": 1,
+            "keys": "<span class='tag' data-id=.*",
+	    "cut_start": 1,
+	    "cut_end": -1
+        },
+        {
+            "type": "single_block",
+            "name": "company_title",
+            "start": "<div class='experience_container'>",
+			"end": "<div class='two_col_block'>",
+			"regex": "title=.+?>",
+			"index": 0,
+			"keys": "<div class='photo'>",
+	    "cut_start": 7,
+	    "cut_end": -2
+        },
+        {
+            "type": "single_line",
+            "name": "source_url",
+            "start": "rel='canonical'>",
+            "link": "true",
+			"regex": "'.*?'",
+			"index": 0,
+	    "cut_start": 1,
+	    "cut_end": -1
+        },
+        {
+            "type": "single_line",
+            "name": "source_site",
+            "start": "<h1 class='logoWrapper u-inline u-vAlignTop'><a href=.*",
+            "link": "false",
+			"regex": ">.*?<",
+			"index": 1,
+	    "cut_start": 1,
+	    "cut_end": -1
+        }
+    ]
+}
